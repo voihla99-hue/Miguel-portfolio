@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Miguel — Operations &amp; Automation</title>
+<meta name="description" content="Operations and automation lead. I build the systems and run the teams that turn traffic into revenue." />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --ink:#0E1217;
+    --ink-2:#141A21;
+    --ink-3:#1B232C;
+    --bone:#ECE8DF;
+    --bone-dim:#A7AEB8;
+    --muted:#69727E;
+    --amber:#F2A93B;
+    --amber-deep:#C9852A;
+    --live:#5FD08A;
+    --line:rgba(236,232,223,0.10);
+    --line-soft:rgba(236,232,223,0.06);
+    --display:'Space Grotesk',sans-serif;
+    --body:'IBM Plex Sans',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --maxw:1100px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--bone);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px;}
+
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;background:var(--amber);display:inline-block;
+  }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,18,23,0.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav__inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .mark{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:18px;
+    letter-spacing:-0.01em;
+    display:flex;align-items:center;gap:9px;
+  }
+  .mark__dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(242,169,59,0.14);}
+  .nav__links{display:flex;gap:30px;align-items:center;}
+  .nav__links a{font-family:var(--mono);font-size:13px;color:var(--bone-dim);transition:color .2s;}
+  .nav__links a:hover{color:var(--bone);}
+  .nav__status{
+    font-family:var(--mono);font-size:12px;color:var(--bone-dim);
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .nav__status .live{width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 8px var(--live);}
+  @media (max-width:720px){
+    .nav__links{display:none;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:96px 0 64px;}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line-soft) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 0%,transparent 70%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 0%,transparent 70%);
+    opacity:.7;
+  }
+  .hero__inner{position:relative;z-index:1;}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(2.4rem,6.4vw,4.6rem);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+    margin:22px 0 0;
+    max-width:16ch;
+  }
+  .hero h1 .hl{color:var(--amber);}
+  .hero__sub{
+    margin:24px 0 0;
+    max-width:52ch;
+    font-size:clamp(1rem,2.2vw,1.18rem);
+    color:var(--bone-dim);
+  }
+  .hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;}
+  .btn{
+    font-family:var(--mono);font-size:13px;letter-spacing:0.02em;
+    padding:13px 22px;border-radius:8px;transition:transform .15s,background .2s,border-color .2s;
+    display:inline-flex;align-items:center;gap:9px;
+  }
+  .btn--primary{background:var(--amber);color:#1a1205;font-weight:500;}
+  .btn--primary:hover{transform:translateY(-2px);background:#f6b955;}
+  .btn--ghost{border:1px solid var(--line);color:var(--bone);}
+  .btn--ghost:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px);}
+
+  /* ---------- pipeline signature ---------- */
+  .pipeline{position:relative;margin:64px 0 8px;padding:0 6px;}
+  .pipeline__track{
+    position:absolute;left:6px;right:6px;top:11px;height:2px;
+    background:linear-gradient(90deg,var(--ink-3),var(--line),var(--ink-3));
+    overflow:visible;
+  }
+  .pipeline__signal{
+    position:absolute;top:50%;left:0;width:9px;height:9px;border-radius:50%;
+    background:var(--amber);box-shadow:0 0 14px var(--amber);
+    transform:translate(-50%,-50%);
+    animation:flow 4.2s cubic-bezier(.65,.05,.36,1) infinite;
+  }
+  @keyframes flow{
+    0%{left:0%;opacity:0;}
+    8%{opacity:1;}
+    92%{opacity:1;}
+    100%{left:100%;opacity:0;}
+  }
+  .pipeline__nodes{position:relative;display:flex;justify-content:space-between;}
+  .node{display:flex;flex-direction:column;align-items:flex-start;gap:12px;width:33%;}
+  .node:nth-child(2){align-items:center;text-align:center;}
+  .node:nth-child(3){align-items:flex-end;text-align:right;}
+  .node__dot{
+    width:24px;height:24px;border-radius:50%;
+    background:var(--ink);border:2px solid var(--amber);
+    position:relative;
+  }
+  .node__dot::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--amber);opacity:.85;}
+  .node__label{font-family:var(--mono);font-size:12.5px;color:var(--bone-dim);line-height:1.35;}
+  .node__label b{display:block;color:var(--bone);font-weight:500;letter-spacing:0.02em;}
+  @media (max-width:600px){
+    .node__label{font-size:11px;}
+    .node__dot{width:20px;height:20px;}
+  }
+
+  /* ---------- section frame ---------- */
+  .section{padding:84px 0;border-top:1px solid var(--line-soft);}
+  .section__head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:44px;}
+  .section__title{
+    font-family:var(--display);font-weight:600;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-0.01em;margin:14px 0 0;
+  }
+  .section__note{font-family:var(--mono);font-size:12.5px;color:var(--muted);max-width:30ch;}
+
+  /* ---------- metrics ---------- */
+  .metrics{padding:54px 0;border-top:1px solid var(--line-soft);}
+  .metrics__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:12px;overflow:hidden;}
+  .metric{background:var(--ink);padding:26px 22px;}
+  .metric__num{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-0.02em;line-height:1;}
+  .metric__num .u{color:var(--amber);}
+  .metric__label{font-family:var(--mono);font-size:11.5px;color:var(--bone-dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:12px;line-height:1.45;}
+  @media (max-width:820px){.metrics__grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- work ---------- */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media (max-width:820px){.cards{grid-template-columns:1fr;}}
+  .card{
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+    border:1px solid var(--line);border-radius:14px;padding:30px 28px;
+    position:relative;overflow:hidden;transition:transform .2s,border-color .2s;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(242,169,59,0.32);}
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--amber),transparent 60%);
+    opacity:0;transition:opacity .25s;
+  }
+  .card:hover::before{opacity:1;}
+  .card__kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber-deep);}
+  .card__title{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:14px 0 16px;letter-spacing:-0.01em;}
+  .card__row{margin:0 0 14px;}
+  .card__lab{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;}
+  .card__txt{color:var(--bone-dim);font-size:14.5px;margin:0;}
+  .card__result{
+    margin-top:20px;padding-top:18px;border-top:1px solid var(--line-soft);
+    display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:var(--bone);
+  }
+  .card__result .dot{width:8px;height:8px;border-radius:50%;background:var(--live);margin-top:7px;flex:none;box-shadow:0 0 8px rgba(95,208,138,.6);}
+  .card__tools{margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;}
+  .tag{font-family:var(--mono);font-size:11px;color:var(--bone-dim);border:1px solid var(--line);border-radius:6px;padding:4px 9px;}
+
+  /* ---------- capabilities ---------- */
+  .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media (max-width:820px){.caps{grid-template-columns:1fr;}}
+  .cap{border-left:2px solid var(--ink-3);padding:4px 0 4px 20px;}
+  .cap h3{font-family:var(--display);font-weight:600;font-size:1.05rem;margin:0 0 14px;}
+  .cap ul{list-style:none;margin:0;padding:0;}
+  .cap li{font-size:14.5px;color:var(--bone-dim);padding:6px 0;border-bottom:1px solid var(--line-soft);}
+  .cap li:last-child{border-bottom:0;}
+
+  /* ---------- about ---------- */
+  .about__grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start;}
+  @media (max-width:820px){.about__grid{grid-template-columns:1fr;gap:28px;}}
+  .about p{font-size:clamp(1.05rem,2.1vw,1.25rem);color:var(--bone);line-height:1.65;margin:0 0 18px;}
+  .about p.dim{color:var(--bone-dim);font-size:1rem;}
+  .about__side{font-family:var(--mono);font-size:13px;color:var(--bone-dim);}
+  .about__side div{padding:11px 0;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between;gap:16px;}
+  .about__side div:last-child{border-bottom:0;}
+  .about__side span{color:var(--bone);}
+
+  /* ---------- contact ---------- */
+  .contact{padding:96px 0;border-top:1px solid var(--line-soft);text-align:center;}
+  .contact h2{font-family:var(--display);font-weight:700;font-size:clamp(2rem,5.4vw,3.4rem);letter-spacing:-0.02em;margin:18px auto 0;max-width:18ch;line-height:1.05;}
+  .contact__links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:36px;}
+
+  footer{border-top:1px solid var(--line-soft);padding:28px 0;}
+  .footer__inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:12px;color:var(--muted);}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .pipeline__signal{animation:none;left:50%;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <div class="mark"><span class="mark__dot"></span>Miguel</div>
+    <nav class="nav__links">
+      <a href="#work">Work</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="nav__status"><span class="live"></span>Open to work</span>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <span class="eyebrow">Miguel · Operations &amp; Automation</span>
+      <h1>I build the systems and run the teams that turn traffic into <span class="hl">revenue</span>.</h1>
+      <p class="hero__sub">Operations lead in the creator economy. I wire up the automations, build the analytics, and manage the people that keep a high-volume subscription business running around the clock.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#contact">Get in touch →</a>
+        <a class="btn btn--ghost" href="#work">See the work</a>
+      </div>
+
+      <div class="pipeline" aria-hidden="true">
+        <div class="pipeline__track"><span class="pipeline__signal"></span></div>
+        <div class="pipeline__nodes">
+          <div class="node"><span class="node__dot"></span><span class="node__label"><b>Traffic</b>new subscribers, daily</span></div>
+          <div class="node"><span class="node__dot"></span><span class="node__label"><b>Systems &amp; data</b>automation · analytics · teams</span></div>
+          <div class="node"><span class="node__dot"></span><span class="node__label"><b>Revenue</b>measured &amp; repeatable</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="metrics">
+    <div class="wrap">
+      <div class="metrics__grid reveal">
+        <div class="metric"><div class="metric__num">35</div><div class="metric__label">Automated workflows in production</div></div>
+        <div class="metric"><div class="metric__num">24<span class="u">/</span>7</div><div class="metric__label">Operations across 3 shift teams</div></div>
+        <div class="metric"><div class="metric__num">20<span class="u">+</span></div><div class="metric__label">Specialists managed across 7 accounts</div></div>
+        <div class="metric"><div class="metric__num"><span class="u">~$</span>1M</div><div class="metric__label">Annual revenue operation supported</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Selected work</span>
+          <h2 class="section__title">Things I built and ran</h2>
+        </div>
+        <p class="section__note">Client and platform details anonymized. Figures are aggregate.</p>
+      </div>
+
+      <div class="cards">
+        <!-- 1 -->
+        <article class="card reveal">
+          <span class="card__kicker">Automation · Systems</span>
+          <h3 class="card__title">Real-time automation suite</h3>
+          <div class="card__row"><span class="card__lab">Problem</span><p class="card__txt">A fast-growing agency ran on manual spreadsheets and guesswork, with no live view of revenue, subscribers, or team activity.</p></div>
+          <div class="card__row"><span class="card__lab">Built</span><p class="card__txt">A 35-workflow suite connecting the platform API, Slack, and Google Workspace: live event capture, automated welcome-message A/B testing, revenue and funnel pipelines, and scheduled daily reports to Slack and Telegram.</p></div>
+          <div class="card__tools"><span class="tag">n8n</span><span class="tag">REST APIs</span><span class="tag">Slack</span><span class="tag">Google Sheets</span><span class="tag">Telegram</span></div>
+          <div class="card__result"><span class="dot"></span>Replaced manual reporting with always-on dashboards the team reads every day.</div>
+        </article>
+
+        <!-- 2 -->
+        <article class="card reveal">
+          <span class="card__kicker">Internal tooling</span>
+          <h3 class="card__title">Request-to-delivery pipeline</h3>
+          <div class="card__row"><span class="card__lab">Problem</span><p class="card__txt">Custom-content requests were handled ad hoc over chat: dropped requests, wrong delivery folders, no tracking from order to payment.</p></div>
+          <div class="card__row"><span class="card__lab">Built</span><p class="card__txt">A Slack-driven system covering the whole lifecycle: intake, automatic routing of each request to the right account's folder, balance-aware messages that flag when to collect payment before delivery, and automated completion alerts.</p></div>
+          <div class="card__tools"><span class="tag">n8n</span><span class="tag">Slack</span><span class="tag">Google Drive</span><span class="tag">REST APIs</span></div>
+          <div class="card__result"><span class="dot"></span>One reliable pipeline from request to delivery, nothing falling through the cracks.</div>
+        </article>
+
+        <!-- 3 -->
+        <article class="card reveal">
+          <span class="card__kicker">Data · Revenue ops</span>
+          <h3 class="card__title">New-customer funnel analysis</h3>
+          <div class="card__row"><span class="card__lab">Problem</span><p class="card__txt">Leadership knew revenue from new customers was soft but not why.</p></div>
+          <div class="card__row"><span class="card__lab">Built</span><p class="card__txt">A deep analysis of the new-customer funnel from raw API data, isolating where conversion broke down — generic first contact, slow follow-up, missed upsell moments — and turning it into a prioritized action plan and a repeatable sales flow.</p></div>
+          <div class="card__tools"><span class="tag">REST APIs</span><span class="tag">Data analysis</span><span class="tag">Google Sheets</span></div>
+          <div class="card__result"><span class="dot"></span>A clear, numbers-backed playbook the team could run to lift conversion.</div>
+        </article>
+
+        <!-- 4 -->
+        <article class="card reveal">
+          <span class="card__kicker">Operations · People</span>
+          <h3 class="card__title">24/7 team operations</h3>
+          <div class="card__row"><span class="card__lab">Problem</span><p class="card__txt">A round-the-clock chat operation across multiple accounts needed structure to stay consistent across shifts and people.</p></div>
+          <div class="card__row"><span class="card__lab">Built</span><p class="card__txt">Shift scheduling across three teams, a QA and coaching process, fan-notes and handover standards so work continues cleanly between shifts, and weekly performance reporting.</p></div>
+          <div class="card__tools"><span class="tag">Slack</span><span class="tag">Google Sheets</span><span class="tag">QA &amp; SOPs</span></div>
+          <div class="card__result"><span class="dot"></span>Consistent coverage and accountable performance across a 20+ person distributed team.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="section" id="capabilities">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Capabilities</span>
+          <h2 class="section__title">What I do</h2>
+        </div>
+      </div>
+      <div class="caps">
+        <div class="cap reveal">
+          <h3>Automation &amp; integration</h3>
+          <ul>
+            <li>Workflow automation in n8n</li>
+            <li>REST APIs &amp; webhooks</li>
+            <li>Slack apps &amp; bots</li>
+            <li>Google Workspace automation</li>
+            <li>Event capture &amp; data pipelines</li>
+          </ul>
+        </div>
+        <div class="cap reveal">
+          <h3>Data &amp; analysis</h3>
+          <ul>
+            <li>Funnel &amp; revenue analysis</li>
+            <li>Reporting pipelines &amp; dashboards</li>
+            <li>A/B testing &amp; experiments</li>
+            <li>Performance &amp; QA audits</li>
+            <li>Turning data into action plans</li>
+          </ul>
+        </div>
+        <div class="cap reveal">
+          <h3>Operations</h3>
+          <ul>
+            <li>24/7 shift management</li>
+            <li>Hiring, QA &amp; coaching</li>
+            <li>Process design &amp; SOPs</li>
+            <li>Handover &amp; accountability systems</li>
+            <li>Revenue &amp; sales optimization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="about about__grid">
+        <div class="reveal">
+          <span class="eyebrow">About</span>
+          <p style="margin-top:18px;">I sit between the systems and the people. I build the automations and analytics that show a business exactly what is happening, and I run the teams that act on it.</p>
+          <p class="dim">Most of my experience is inside a high-volume creator-economy operation, where the same skills repeat: connect the tools, measure everything, find where money leaks, and put a process in place that holds up around the clock. I like work that is invisible when it is done right.</p>
+        </div>
+        <div class="about__side reveal">
+          <div><span>Focus</span> Ops &amp; automation</div>
+          <div><span>Industry</span> Creator economy</div>
+          <div><span>Coverage</span> 24/7, 3 shifts</div>
+          <div><span>Stack</span> n8n · APIs · Slack</div>
+          <div><span>Based</span> Remote</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center;">Contact</span>
+      <h2>Need someone to build the system and run it?</h2>
+      <div class="contact__links">
+        <a class="btn btn--primary" href="mailto:your.email@gmail.com">your.email@gmail.com</a>
+        <a class="btn btn--ghost" href="https://linkedin.com/in/yourprofile">LinkedIn ↗</a>
+        <a class="btn btn--ghost" href="https://t.me/yourhandle">Telegram ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer__inner">
+    <span>Miguel — Operations &amp; Automation</span>
+    <span>Built {year}</span>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.querySelector('footer .footer__inner span:last-child').textContent =
+    'Built ' + new Date().getFullYear();
+
+  // scroll reveal
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.14 });
+    items.forEach(function(el){ io.observe(el); });
+  }
+</script>
+</body>
+</html>
