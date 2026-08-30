@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Miguel Romero — Operations Leader &amp; Automation Architect</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNiIgZmlsbD0iIzFCMjMyQyIvPgogIDx0ZXh0IHg9IjE2IiB5PSIyMyIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjIwIiBmaWxsPSIjRDQ4MzFBIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5NPC90ZXh0Pgo8L3N2Zz4=">
-<meta name="description" content="Operations leader and automation architect. I build the production infrastructure — automation pipelines, live reporting, internal CRM tooling, QA systems — and run the distributed teams that use it." />
+<meta name="description" content="Operations leader and automation architect. I build the production infrastructure — automation pipelines, live reporting, internal tooling, QA systems, SOPs and compliance documentation — and run the distributed teams that use it." />
 <meta name="author" content="Miguel Romero" />
 <meta name="robots" content="index,follow" />
 <meta name="theme-color" content="#F7F6F3" />
@@ -675,18 +675,19 @@ document.documentElement.classList.add('js');
 <div class="wrap">
   <span class="eyebrow">Selected work</span>
   <h2 class="section__title">What I actually build</h2>
-  <p class="lead">Fourteen builds, each one live and in daily use. Every problem below was a real business problem someone was losing money or hours to — not a portfolio exercise.</p>
+  <p class="lead">Eighteen builds across two concurrent engagements, each one live and in daily use. Every problem below was a real business problem someone was losing money or hours to — not a portfolio exercise.</p>
 
   <div class="filters" role="group" aria-label="Filter work by discipline">
-    <button class="filter" type="button" data-f="all" aria-pressed="true">All · 14</button>
+    <button class="filter" type="button" data-f="all" aria-pressed="true">All · 18</button>
     <button class="filter" type="button" data-f="automation" aria-pressed="false">Automation</button>
     <button class="filter" type="button" data-f="data" aria-pressed="false">Data &amp; reporting</button>
     <button class="filter" type="button" data-f="software" aria-pressed="false">Software</button>
     <button class="filter" type="button" data-f="infra" aria-pressed="false">Infrastructure</button>
     <button class="filter" type="button" data-f="ai" aria-pressed="false">AI</button>
     <button class="filter" type="button" data-f="people" aria-pressed="false">People &amp; ops</button>
+    <button class="filter" type="button" data-f="docs" aria-pressed="false">Docs &amp; design</button>
   </div>
-  <p class="filter-note" id="filter-count" aria-live="polite">Showing all 14 builds</p>
+  <p class="filter-note" id="filter-count" aria-live="polite">Showing all 18 builds</p>
 
   <div class="work-grid" id="work-grid">
 
@@ -873,6 +874,62 @@ document.documentElement.classList.add('js');
       <div class="card__result"><span class="dot"></span>Findings reach the floor as behaviour, not as a document nobody opens.</div>
     </article>
 
+    <article class="card reveal" data-cat="docs software">
+      <div class="card__kicker">Design systems · Document engineering</div>
+      <h3 class="card__title">A house design system, and the pipeline that builds on it</h3>
+      <div class="card__row"><span class="card__lab">Problem</span><p class="card__txt">A growing company had one well-made document and no way to make another that matched it. Every new policy or procedure was rebuilt from scratch in a word processor, so nothing looked related and nothing could be regenerated when the content changed.</p></div>
+      <div class="card__row"><span class="card__lab">Built</span><p class="card__txt">I reverse-engineered the house system out of the existing PDF — exact palette, type scale and hierarchy, and a component set (callout boxes, critical warnings, amber notices, table styles, code blocks, running headers and footers) — and wrote it up as a spec anything new can be built against. Then a production pipeline: fixed-layout HTML printed to PDF through headless Chrome, plus a Python builder that generates a whole document straight from its markdown source, so the source stays the thing you edit.</p></div>
+      <div class="card__tools"><span class="tag">HTML · CSS</span><span class="tag">Python</span><span class="tag">Headless Chrome</span><span class="tag">Design systems</span><span class="tag">Typography</span></div>
+      <div class="card__stats">
+        <div class="cstat"><div class="cstat__n">3</div><div class="cstat__l">Documents on one system</div></div>
+        <div class="cstat"><div class="cstat__n">36<span class="u">pp</span></div><div class="cstat__l">Largest, fully generated</div></div>
+        <div class="cstat"><div class="cstat__n">2,181</div><div class="cstat__l">Source lines it builds from</div></div>
+      </div>
+      <div class="card__result"><span class="dot"></span>New documents match the house style by construction, and regenerate from source.</div>
+    </article>
+
+    <article class="card reveal" data-cat="docs">
+      <div class="card__kicker">Compliance · Process design</div>
+      <h3 class="card__title">Regulatory onboarding SOP for a messaging platform</h3>
+      <div class="card__row"><span class="card__lab">Problem</span><p class="card__txt">Client onboarding ran on carrier-registration rules that lived in two people&rsquo;s heads. The framework named the phases that block a go-live, but nothing told anyone how to execute them — in a regime where a rejected submission costs a fee per attempt and a wrong one costs the account.</p></div>
+      <div class="card__row"><span class="card__lab">Built</span><p class="card__txt">A twelve-section onboarding and provisioning lifecycle with two sendable annexes: qualification, the intake package, US A2P 10DLC compliance rules, the portal steps for brand and campaign registration in order, pilot and verification, go-live and handover, carrier redundancy and failover, and a definition of done. Writing it surfaced two live defects nobody had recorded — accounts provisioned under the parent rather than per client <em>cannot be moved afterwards</em> and quietly break tenant segregation, and a cloned campaign carries the previous client&rsquo;s consent evidence and live checkout URL into the next submission. Both are hard warnings in the procedure now.</p></div>
+      <div class="card__tools"><span class="tag">Technical writing</span><span class="tag">A2P 10DLC</span><span class="tag">Compliance</span><span class="tag">SOP design</span></div>
+      <div class="card__stats">
+        <div class="cstat"><div class="cstat__n">15<span class="u">pp</span></div><div class="cstat__l">12 sections · 2 annexes</div></div>
+        <div class="cstat"><div class="cstat__n">2</div><div class="cstat__l">Live defects surfaced</div></div>
+        <div class="cstat"><div class="cstat__n">28</div><div class="cstat__l">Cross-refs kept correct</div></div>
+      </div>
+      <div class="card__result"><span class="dot"></span>Provisioning is a procedure anyone can follow, not a thing two people remember.</div>
+    </article>
+
+    <article class="card reveal" data-cat="people docs">
+      <div class="card__kicker">People ops · Hiring</div>
+      <h3 class="card__title">A 24/7 human review layer — designed, costed and staffed</h3>
+      <div class="card__row"><span class="card__lab">Problem</span><p class="card__txt">Automated messages needed a person to approve them before they reached customers, around the clock, on a small budget. That meant a role that did not exist yet, a way to screen for it, and a roster that genuinely covered 168 hours a week with no gaps and no paid double-cover.</p></div>
+      <div class="card__row"><span class="card__lab">Built</span><p class="card__txt">The whole package. A job posting engineered against the failure mode — the title deliberately avoids &ldquo;easy&rdquo;, &ldquo;simple&rdquo; and &ldquo;data entry&rdquo;, because those words recruit speed-optimised applicants into an accuracy job. A Google Apps Script that builds the application form and its self-scoring response sheet in a single run. And a three-reviewer roster where each person works six days for 56 hours, every long day exists specifically to split someone else&rsquo;s rest day, and the grid verifies by hand: every column sums to 56, every row to 24.</p></div>
+      <div class="card__tools"><span class="tag">Google Apps Script</span><span class="tag">Shift design</span><span class="tag">Hiring</span><span class="tag">Screening rubrics</span></div>
+      <div class="card__stats">
+        <div class="cstat"><div class="cstat__n">168<span class="u">h</span></div><div class="cstat__l">Covered by 3 people</div></div>
+        <div class="cstat"><div class="cstat__n">0</div><div class="cstat__l">Gaps · zero double-cover</div></div>
+        <div class="cstat"><div class="cstat__n">1</div><div class="cstat__l">Script builds form + scoring</div></div>
+      </div>
+      <div class="card__result"><span class="dot"></span>A roster that proves itself on the page, and screening that filters for the right instinct.</div>
+    </article>
+
+    <article class="card reveal" data-cat="docs">
+      <div class="card__kicker">Content · Brand</div>
+      <h3 class="card__title">A two-platform content program, built from zero</h3>
+      <div class="card__row"><span class="card__lab">Problem</span><p class="card__txt">A company with a real product had almost no audience, and was posting the same thing to two platforms that reward completely different behaviour — so nothing compounded and nothing could be attributed.</p></div>
+      <div class="card__row"><span class="card__lab">Built</span><p class="card__txt">A four-week plan across both channels with five content pillars and a declared mix, built on the actual mechanics of each platform instead of one calendar copied twice: one has a long post half-life and rewards depth, the other rewards replies under bigger accounts far more than posts of your own. Plus a library of 28 charts and explainer graphics authored as HTML and exported to image, and post queues written to each platform&rsquo;s fold limit with the character count recorded on every draft.</p></div>
+      <div class="card__tools"><span class="tag">HTML · CSS</span><span class="tag">Data visualisation</span><span class="tag">Copywriting</span><span class="tag">Content strategy</span></div>
+      <div class="card__stats">
+        <div class="cstat"><div class="cstat__n">28</div><div class="cstat__l">Graphics authored in code</div></div>
+        <div class="cstat"><div class="cstat__n">5</div><div class="cstat__l">Pillars, with a declared mix</div></div>
+        <div class="cstat"><div class="cstat__n">2</div><div class="cstat__l">Platforms, separate strategies</div></div>
+      </div>
+      <div class="card__result"><span class="dot"></span>Every asset is source-controlled and re-exportable — no design tool in the loop.</div>
+    </article>
+
   </div>
 </div>
 </section>
@@ -1020,6 +1077,23 @@ document.documentElement.classList.add('js');
     </div>
 
     <div class="tl reveal">
+      <div class="tl__date">Jul 2026 — Present</div>
+      <div>
+        <div class="tl__role">Operations, Documentation &amp; Enablement Consultant</div>
+        <div class="tl__co">Concurrent freelance engagement · B2B SMS platform for e-commerce recovery</div>
+        <ul>
+          <li>Second live client alongside the operations role above — brought in to turn an undocumented, founder-led operation into something a team can run.</li>
+          <li>Reverse-engineered the company&rsquo;s document design system from a single existing PDF — exact palette, type scale, hierarchy and a full component set — and published it as the spec every new policy, SOP and code of conduct is built against.</li>
+          <li>Wrote and produced <strong>three operational documents on that system</strong>, including a 15-page client onboarding and provisioning lifecycle (12 sections, two sendable annexes) and a 36-page engineering handbook generated from its markdown source by a Python builder I wrote.</li>
+          <li>Documented <strong>US A2P 10DLC carrier-registration compliance</strong> end to end: brand and campaign registration, consent evidence requirements, opt-out rules, pilot verification, go-live gates, and a carrier redundancy and failover design commissioned because single-vendor exposure was an existential risk.</li>
+          <li>Surfaced two live operational defects while writing the procedure — accounts provisioned under the parent organisation cannot later be separated, breaking tenant isolation; and cloned campaign submissions carry the previous client&rsquo;s consent evidence and live URLs. Both are now hard warnings in the SOP.</li>
+          <li>Designed the company&rsquo;s <strong>24/7 human message-approval layer</strong> from nothing: the role definition and job posting, a Google Apps Script that builds the application form and its self-scoring sheet, and a three-reviewer roster covering all 168 weekly hours with zero gaps and zero paid double-cover.</li>
+          <li>Built the go-to-market content program: a four-week two-platform plan with five declared content pillars, <strong>28 charts and explainer graphics authored in HTML</strong> and exported to image, and platform-specific post queues written to each channel&rsquo;s fold limit.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl reveal">
       <div class="tl__date">Sep 2023 — Mar 2026</div>
       <div>
         <div class="tl__role">Sales &amp; Funnelling Manager</div>
@@ -1126,6 +1200,7 @@ document.documentElement.classList.add('js');
       <div class="chips">
         <span class="chip">HTML · CSS</span><span class="chip">Vanilla JS</span><span class="chip">Responsive layout</span>
         <span class="chip">Dashboards &amp; charts</span><span class="chip">WCAG accessibility</span><span class="chip">Performance profiling</span>
+        <span class="chip">Design systems</span><span class="chip">Print/PDF typesetting</span>
       </div>
     </div>
     <div class="stack-col">
@@ -1133,6 +1208,7 @@ document.documentElement.classList.add('js');
       <div class="chips">
         <span class="chip chip--hot">Slack API</span><span class="chip">Google Sheets / Drive</span><span class="chip">Google Forms</span>
         <span class="chip">Telegram</span><span class="chip">Playwright</span><span class="chip">ffmpeg</span>
+        <span class="chip">Google Apps Script</span>
         <span class="chip">OAuth 2.0</span><span class="chip">Third-party platform APIs</span>
       </div>
     </div>
@@ -1149,7 +1225,7 @@ document.documentElement.classList.add('js');
       <div class="chips">
         <span class="chip chip--hot">QA framework design</span><span class="chip">Scored audit systems</span><span class="chip">KPI frameworks</span>
         <span class="chip">SOP &amp; runbook writing</span><span class="chip">Decision records</span><span class="chip">Docs-as-code</span>
-        <span class="chip">Root-cause analysis</span>
+        <span class="chip">Root-cause analysis</span><span class="chip">Technical writing</span><span class="chip">Regulatory compliance (A2P 10DLC)</span>
       </div>
     </div>
   </div>
@@ -1199,6 +1275,7 @@ document.documentElement.classList.add('js');
       <h3>Make it stick</h3>
       <ul class="skill-list">
         <li>SOP, runbook &amp; playbook design</li>
+        <li>Technical &amp; compliance writing</li>
         <li>Documentation as a working system</li>
         <li>Onboarding &amp; training tracks</li>
         <li>Coaching cadence &amp; calibration</li>
@@ -1218,11 +1295,13 @@ document.documentElement.classList.add('js');
       <span class="eyebrow">About</span>
       <p style="margin-top:18px;">I sit between the systems and the people — building the infrastructure that makes distributed teams visible, accountable and scalable, then running the team inside it.</p>
       <p class="dim">I started on the call center floor and worked up through team leading, training and sales management to running a 300-seat program. Then I taught myself to build the tools I kept wishing existed. Today that means a production stack I administer, an automation layer of several hundred workflows, an internal CRM the whole floor works in, a data warehouse behind every number I report, and a documented knowledge base that lets both people and AI agents pick the work up without me in the room. I run on measurement, clean process, and the belief that good systems are what make good managers.</p>
+      <p class="dim">I run two engagements at once, and they ask for opposite halves of the same skill. One is a 24/7 operation I own end to end, where the work is infrastructure and people at scale. The other is an early company with a real product and almost nothing written down, where the work is turning what two founders know into procedures, documents and roles a team can actually run.</p>
       <p class="dim">If you have an operation where the numbers are guesses, the tooling is spreadsheets, and the knowledge lives in three people&rsquo;s heads — that is exactly the shape of problem I take on.</p>
     </div>
     <div class="about__side">
       <div><span>Based</span><span>Davao City, PH</span></div>
       <div><span>Managing</span><span>21 agents · 10 accounts</span></div>
+      <div><span>Engagements</span><span>2 concurrent clients</span></div>
       <div><span>Experience</span><span>9+ years in operations</span></div>
       <div><span>Focus</span><span>Ops leadership + automation</span></div>
       <div><span>Languages</span><span>English</span></div>
