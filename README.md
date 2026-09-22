@@ -48,13 +48,13 @@ Hash routes, so every view and filter is linkable and the back button works on a
   `DASHBOARD SHELL` at the end.
 - **Contact details appear in four places:** the JSON-LD, the sidebar icon row, the phone menu drawer
   (`.snav__contact`), and the Contact view. Change all four.
-- **Home tile numbers are duplicated from the views** (e.g. `$157.9K`, `18 builds`, the category counts).
+- **Home tile numbers are duplicated from the views** (e.g. `$157.9K`, `$662K`, `21 builds`, the category counts).
   When a figure changes in a view, change its tile too.
 
 Work cards are filterable. Each `<article class="card">` carries `data-cat="…"` with one or more of
 `automation · data · software · infra · ai · people · docs`. If you add a card, set its categories, then
 update the `All · N` button, the `#filter-count` text, the Projects tile's category bars and counts, and
-the "18 builds" copy.
+the "21 builds" copy (Projects tile subtitle and the Projects view lead).
 
 ## Content rules
 
@@ -63,11 +63,16 @@ the "18 builds" copy.
   named as employment history only.
 - **No infrastructure identifiers** — no hostnames, domains, IPs, tokens or file paths from the private
   systems described.
+- **Do not state how many clients Miguel works with**, anywhere — describe each engagement on its own.
+- **Professional work only.** Personal side projects stay off the page.
 - **No invented social proof.** No testimonials, certifications, visitor counters or badges unless they
   are real and supplied.
 - **Every number on the page is a measurement**, not an estimate. Source of truth for the operational
-  figures is the private ops knowledge base; re-measure and date-stamp before changing one. The revenue
+  figures is the private ops knowledge base; re-measure and date-stamp before changing one. Last full refresh: **2026-09-22**. The revenue
   sparkline is zero-based on purpose — a truncated axis would exaggerate the growth.
+- **Read funnel stages inside the 32-day welcome-tracking window.** The monthly report recomputes closed
+  months from a table pruned at 32 days, so a closed month's welcomed/replied counts shrink every run and
+  cannot be quoted. Use the current month or the rolling window, never a closed month.
 
 ## Deploy
 
