@@ -1058,13 +1058,13 @@ document.documentElement.classList.add('js');
 
     <!-- PROJECTS (wide, featured) -->
     <article class="tile tile--wide tile--feature" style="--i:0">
-      <a class="tile__link" href="#/projects" aria-label="Projects — all 21 builds"></a>
+      <a class="tile__link" href="#/projects" aria-label="Projects — all 22 builds"></a>
       <div class="tile__head">
         <span class="tile__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2.5h8.5A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg></span>
         <h2 class="tile__t">Projects</h2>
         <span class="tile__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
       </div>
-      <p class="tile__s">21 live builds — each one solved a problem someone was losing money or hours to.</p>
+      <p class="tile__s">22 live builds — each one solved a problem someone was losing money or hours to.</p>
       <div class="tile__body">
         <div class="proj">
           <div class="feat">
@@ -1222,10 +1222,10 @@ document.documentElement.classList.add('js');
 <div class="wrap">
   <span class="eyebrow">Selected work</span>
   <h2 class="section__title">What I actually build</h2>
-  <p class="lead">Twenty-one builds, each one live and in daily use. Every problem below was a real business problem someone was losing money or hours to — not a portfolio exercise.</p>
+  <p class="lead">Twenty-two builds, each one live and in daily use. Every problem below was a real business problem someone was losing money or hours to — not a portfolio exercise.</p>
 
   <div class="filters" role="group" aria-label="Filter work by discipline">
-    <button class="filter" type="button" data-f="all" aria-pressed="true">All · 21</button>
+    <button class="filter" type="button" data-f="all" aria-pressed="true">All · 22</button>
     <button class="filter" type="button" data-f="automation" aria-pressed="false">Automation</button>
     <button class="filter" type="button" data-f="data" aria-pressed="false">Data &amp; reporting</button>
     <button class="filter" type="button" data-f="software" aria-pressed="false">Software</button>
@@ -1234,9 +1234,24 @@ document.documentElement.classList.add('js');
     <button class="filter" type="button" data-f="people" aria-pressed="false">People &amp; ops</button>
     <button class="filter" type="button" data-f="docs" aria-pressed="false">Docs &amp; design</button>
   </div>
-  <p class="filter-note" id="filter-count" aria-live="polite">Showing all 21 builds</p>
+  <p class="filter-note" id="filter-count" aria-live="polite">Showing all 22 builds</p>
 
   <div class="work-grid" id="work-grid">
+
+    <article class="card reveal" data-cat="software data">
+      <div class="card__kicker">Software &middot; Data</div>
+      <h3 class="card__title">Desktop knowledge-graph monitor</h3>
+      <div class="card__row"><span class="card__lab">Problem</span><p class="card__txt">The operations vault passed the size where anyone could tell what had changed or what was connected to what, and the health of the services behind it lived in a terminal you had to remember to open. Both were invisible until something broke.</p></div>
+      <div class="card__row"><span class="card__lab">Built</span><p class="card__txt">A collector that reads the filesystem, the repository state and the live service checks every five minutes and publishes them to a loopback server, drawn as an animated force-directed graph across the desktop wallpaper &mdash; notes as nodes, links as edges, colour by how recently each file changed, with a status rail in the corner. It is written to be believed: the panel compares the collector&rsquo;s own clock against the browser&rsquo;s and reports itself stale rather than showing a dead reading as a live one.</p></div>
+      <div class="card__tools"><span class="tag">Canvas</span><span class="tag">Python</span><span class="tag">Force-directed layout</span><span class="tag">No charting library</span></div>
+      <div class="card__stats">
+        <div class="cstat"><div class="cstat__n">165</div><div class="cstat__l">Notes mapped</div></div>
+        <div class="cstat"><div class="cstat__n">777</div><div class="cstat__l">Links between them</div></div>
+        <div class="cstat"><div class="cstat__n">5<span class="u">min</span></div><div class="cstat__l">Refresh, unattended</div></div>
+      </div>
+      <div class="card__result"><span class="dot"></span>What changed and what is connected, readable at a glance without opening anything.</div>
+      <div class="card__tools"><a class="btn btn--ghost" href="second-brain/">Open the interactive demo &rarr;</a></div>
+    </article>
 
     <article class="card reveal" data-cat="automation data">
       <div class="card__kicker">Automation · Reporting</div>
